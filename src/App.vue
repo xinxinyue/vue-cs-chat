@@ -1,28 +1,66 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
-</template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import { actions } from './store';
+  import Card from './components/card';
+  import List from './components/list';
+  import TextContent from './components/text';
+  import Message from './components/message';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components: { Card, List, TextContent, Message },
+  vuex: {
+    actions: actions
+  },
+  created () {
+
+    this.$store.dispatch('initData');
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<template>
+  <div id="app">
+    <div class="sidebar">
+      <Card></Card>
+      <List></List>
+    </div>
+    <div class="main">
+      <Message></Message>
+      <TextContent></TextContent>
+    </div>
+  </div>
+
+</template>
+
+<style lang="less" scoped>
+  #app {
+    margin: 20px auto;
+    width: 800px;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 3px;
+    .sidebar, .main {
+      height: 100%;
+    }
+    .sidebar {
+      float: left;
+      width: 200px;
+      color: #f4f4f4;
+      background-color: #2e3238;
+    }
+    .main {
+      position: relative;
+      overflow: hidden;
+      background-color: #eee;
+    }
+    .text {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+    }
+    .message {
+      height: ~'calc(100% - 160px)';
+    }
+  }
+  </style>
