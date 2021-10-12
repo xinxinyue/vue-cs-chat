@@ -1,4 +1,5 @@
 <script>
+import Vue from 'vue';
 export default {
     vuex: {
         getters: {
@@ -26,10 +27,9 @@ export default {
     directives: {
         // 发送消息后滚动到底部
         'scroll-bottom' (el) {
-            el.scrollTop = el.scrollHeight - el.clientHeight;
-            // this.vm.$nextTick(() => {
-            //     this.el.scrollTop = this.el.scrollHeight - this.el.clientHeight;
-            // });
+            Vue.nextTick(() => {
+                el.scrollTop = el.scrollHeight - el.clientHeight;
+            });
         }
     }
 };
