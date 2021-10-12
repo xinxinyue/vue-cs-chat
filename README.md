@@ -1,4 +1,4 @@
-# test
+# 基于vue-chat做的VUE2的聊天DEMO
 
 ## Project setup
 ```
